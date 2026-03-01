@@ -1,0 +1,59 @@
+%YAML:1.0
+
+imu: 1         
+num_of_cam: 2
+
+imu_topic: "/oak/imu/data"
+image0_topic: "/oak/left/image_raw"
+image1_topic: "/oak/right/image_raw"
+output_path: "/home/drone-pi/output"
+
+cam0_calib: "cam0_pinhole.yaml"
+cam1_calib: "cam1_pinhole.yaml"
+image_width: 640
+image_height: 400
+
+estimate_extrinsic: 0
+
+body_T_cam0: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [1, 0, 0, 0,
+          0, 1, 0, 0,
+          0, 0, 1, 0,
+          0, 0, 0, 1]
+
+body_T_cam1: !!opencv-matrix
+   rows: 4
+   cols: 4
+   dt: d
+   data: [1, 0, 0, -0.075,
+          0, 1, 0, 0,
+          0, 0, 1, 0,
+          0, 0, 0, 1]
+
+multiple_thread: 1
+max_cnt: 120
+min_dist: 30
+freq: 10
+F_threshold: 1.0
+show_track: 1
+flow_back: 1
+
+max_solver_time: 0.06
+max_num_iterations: 10
+keyframe_parallax: 10.0
+
+acc_n: 0.2
+gyr_n: 0.02
+acc_w: 0.002
+gyr_w: 0.0002
+g_norm: 9.81007
+
+estimate_td: 1
+td: 0.5
+
+load_previous_pose_graph: 0
+pose_graph_save_path: "/home/drone-pi/output/pose_graph/"
+save_image: 1
